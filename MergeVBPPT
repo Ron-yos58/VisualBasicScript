@@ -1,0 +1,19 @@
+Sub joiner()
+Dim sFileTyp As String
+Dim sFileName As String
+Dim otarget As Presentation
+Dim i As Integer
+On Error GoTo errhandler
+sFileTyp = "*.PPT*"
+sFileName = Dir$(Environ("USERPROFILE") & "\YOUR_FOLDER_LOCATION\joiner\" & sFileTyp)
+Set otarget = ActivePresentation
+Do While sFileName <> ""
+Call otarget.Slides.InsertFromFile(Environ("USERPROFILE") & "\YOUR_FOLDER_LOCATION\joiner\" & _
+sFileName, otarget.Slides.Count)
+sFileName = Dir()
+Loop
+Exit Sub
+errhandler:
+MsgBox "Sorry, there was an error"
+End Sub
+
